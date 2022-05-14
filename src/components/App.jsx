@@ -1,5 +1,4 @@
 import { useState } from 'react';
-
 import { Section } from './Section';
 import { Statistics } from './Statistics';
 import { FeedbackOptions } from './FeedbackOptions';
