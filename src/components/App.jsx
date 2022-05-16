@@ -6,16 +6,13 @@ import { Notification } from './Notification';
 import { Container } from './App.styled';
 
 export const App = () => {
-  const [good, setGood] = useState(0);
-  const [neutral, setNeutral] = useState(0);
-  const [bad, setBad] = useState(0);
+  const [options, setOptions] = useState({ good: 0, neutral: 0, bad: 0 });
 
   const handleBtnClick = key => {
-    if (key === 'good') setGood(s => s + 1);
-    if (key === 'neutral') setNeutral(s => s + 1);
-    if (key === 'bad') setBad(s => s + 1);
+    setOptions(options => ({ ...options, [key]: options[key] + 1 }));
   };
 
+  const { good, neutral, bad } = options;
   const totalFeedback = good + neutral + bad;
   const positiveFeedback = Math.round((100 / totalFeedback) * good);
 
@@ -23,7 +20,7 @@ export const App = () => {
     <Container>
       <Section title="Please leave feedback">
         <FeedbackOptions
-          options={['good', 'neutral', 'bad']}
+          options={Object.keys(options)}
           onLeaveFeedback={handleBtnClick}
         />
       </Section>
